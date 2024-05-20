@@ -2,11 +2,17 @@
   "name": "hotgirlzread",
   "version": "1.0.0",
   "description": "Book club website",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd server && nodemon server.js",
-    "client": "cd client && npm start"
+    "client": "cd client && npm start",
+    "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm run start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build",
+    "render-build": "npm install && npm run build",
+    "frontend": "vite"
   },
   "keywords": [],
   "author": "Elizabeth Ames",
@@ -15,7 +21,6 @@
     "concurrently": "^8.2.2"
   },
   "devDependencies": {
-    "eslint": "^9.3.0",
     "prettier": "^3.2.5"
   }
 }

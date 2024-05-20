@@ -1,6 +1,9 @@
 const Book = require('../models/Book');
 const axios = require('axios');
 
+const GOOGLE_BOOKS_API_URL = 'https://www.googleapis.com/books/v1/volumes';
+const API_KEY = 'AIzaSyDB73M7PoW5b0ELVLB062yv-VSUfhpvUJ0';
+
 const getBooks = async (req, res) => {
   try {
     const books = await Book.find();
@@ -13,12 +16,20 @@ const getBooks = async (req, res) => {
 const getBookDetails = async (req, res) => {
   const { id } = req.params;
   try {
-    const response = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes/${id}?key=YOUR_API_KEY`
-    );
+    const response = await axios.get(`${GOOGLE_BOOKS_API_URL}/${id}?key=${API_KEY}`);
     res.json(response.data);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching book details' });
+  }
+};
+
+const searchBooks = async (req, res) => {
+  const { query } = req.query;
+  try {
+    const response = await axios.get(`${GOOGLE_BOOKS_API_URL}?q=${query}&key=${API_KEY}`);
+    res.json(response.data.items);
+  } catch (error) {
+    res.status(500).json({ message: 'Error searching for books' });
   }
 };
 
@@ -59,4 +70,4 @@ const addRating = async (req, res) => {
   }
 };
 
-module.exports = { getBooks, getBookDetails, addBook, addComment, addRating };
+module.exports = { getBooks, getBookDetails, searchBooks, addBook, addComment, addRating };
