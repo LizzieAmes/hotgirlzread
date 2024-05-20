@@ -2,7 +2,7 @@ const Book = require('../models/Book');
 const axios = require('axios');
 
 const GOOGLE_BOOKS_API_URL = 'https://www.googleapis.com/books/v1/volumes';
-const API_KEY = 'AIzaSyDB73M7PoW5b0ELVLB062yv-VSUfhpvUJ0';
+const API_KEY = process.env.GOOGLE_BOOKS_API_KEY;
 
 const getBooks = async (req, res) => {
   try {
