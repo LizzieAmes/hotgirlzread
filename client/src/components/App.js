@@ -9,11 +9,10 @@ function App() {
       <Routes>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/" element={<SignIn />} /> 
+        <Route path="/" element={<SignIn />} /> {/* Default route */}
       </Routes>
     </Router>
   );
 }
 
 export default App;
-

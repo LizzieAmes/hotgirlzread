@@ -9,9 +9,9 @@ module.exports = {
       },
       fontFamily: {
         handwriting: ['"Comic Sans MS"', 'cursive'],
+        poppins: ['Poppins', 'sans-serif'],
       },
     },
   },
   plugins: [],
 };
-
